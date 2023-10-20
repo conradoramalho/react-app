@@ -5,6 +5,7 @@ import { useHotelData } from '../hooks/network/useHotelData';
 
 export function HotelList() {
   const { query } = useHotelData();
+  console.log('🚀 ~ file: HotelList.tsx:8 ~ HotelList ~ query:', query);
 
   if (query.isError) return <div>Error :/</div>;
   if (query.isLoading) return <div>Loading...</div>;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export interface Hotel {
-  adress1: string;
+  address1: string;
   countryCode: string;
   shortDescription: string;
   city: string;
