@@ -1,16 +1,40 @@
-import styled from 'styled-components';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { HotelList } from './pages/HotelList';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { HotelDetails } from './pages/HotelDetails';
+import { Layout } from './components/Layout';
 
-import NxWelcome from './nx-welcome';
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <HotelList />,
+      },
+      {
+        path: '/hotel/:hotelId',
+        element: <HotelDetails />,
+      },
+    ],
+  },
+]);
 
-const StyledApp = styled.div`
-  // Your style here
-`;
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      gcTime: 1000 * 60 * 60 * 24,
+      staleTime: 1000 * 60 * 60 * 24,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export function App() {
   return (
-    <StyledApp>
-      <NxWelcome title="client-app" />
-    </StyledApp>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
 
