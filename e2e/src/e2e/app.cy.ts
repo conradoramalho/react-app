@@ -1,13 +1,16 @@
-import { getGreeting } from '../support/app.po';
+import { HOTELS_LIST_RESPONSE } from '../__mocks__/hotel.mock';
 
 describe('client-app', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  it('should display hotel list', () => {
+    cy.intercept('GET', '/', {
+      statusCode: 200,
+      body: HOTELS_LIST_RESPONSE,
+    });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome client-app');
+    cy.contains(HOTELS_LIST_RESPONSE.hotels[0].name).click();
+
+    cy.url().should('include', `/hotel/${HOTELS_LIST_RESPONSE.hotels[0].id}`);
   });
 });
