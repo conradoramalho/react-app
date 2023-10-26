@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const LINKS = [
   { id: 1, title: 'Home', path: '/' },
   { id: 2, title: 'About US', path: '/about' },
-  { id: 3, title: 'Register new Hotel', path: '/register' },
+  { id: 3, title: 'Register new Hotel', path: '/hotel/new' },
 ];
 
 export function Layout() {

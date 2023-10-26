@@ -3,6 +3,7 @@ import { HotelList } from './pages/HotelList';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { HotelDetails } from './pages/HotelDetails';
 import { Layout } from './components/Layout';
+import { CreateHotel } from './pages/CreateHotel';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: '/hotel/:hotelId',
         element: <HotelDetails />,
+      },
+      {
+        path: '/hotel/new',
+        element: <CreateHotel />,
       },
     ],
   },
